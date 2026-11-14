@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KALPESH NIKAM | Patch Store</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#101010;
+  color:white;
+}
+header{
+  text-align:center;
+  padding:35px 15px;
+  background:#1d1d1d;
+  border-bottom:2px solid #d6a84b;
+}
+header h1{color:#e6bd65;margin:0}
+header p{color:#ccc}
+.container{max-width:950px;margin:auto;padding:20px}
+.intro{text-align:center;margin:25px 0}
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+}
+.product{
+  background:#202020;
+  padding:20px;
+  border-radius:14px;
+  border:1px solid #444;
+}
+.product h2{color:#e6bd65}
+.price{font-size:25px;font-weight:bold}
+button,.buy{
+  display:block;
+  width:100%;
+  padding:13px;
+  margin-top:12px;
+  border:0;
+  border-radius:8px;
+  background:#d6a84b;
+  color:#111;
+  font-weight:bold;
+  text-align:center;
+  text-decoration:none;
+  cursor:pointer;
+}
+.note{color:#bbb;font-size:13px;line-height:1.6}
+footer{text-align:center;padding:25px;color:#aaa}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>KALPESH NIKAM</h1>
+  <p>AHIRANI • KHANDESHI • SAMBAL PATCH STORE</p>
+  <p>Roland SPD-20 PRO Compatible Patches</p>
+</header>
+
+<div class="container">
+  <div class="intro">
+    <h2>Our Patch Collection</h2>
+    <p>तुमच्या आवडीचे Music Patches खरेदी करा.</p>
+  </div>
+
+  <div class="products" id="productList"></div>
+</div>
+
+<footer>
+  © 2026 KALPESH NIKAM PATCH STORE
+</footer>
+
+<script>
+
+/* ==========================================
+   PATCH ADD / EDIT करण्याची जागा
+
+   नवीन PATCH जोडण्यासाठी खालीलप्रमाणे
+   नवीन वस्तू कॉपी करून यादीत टाका.
+
+   name = Patch चे नाव
+   price = किंमत
+   description = माहिती
+   download = Patch ची डाउनलोड लिंक
+
+   ========================================== */
+
+const patches = [
+
+  {
+    name: "मी तुंच दिवाना",
+    price: 300,
+    description: "Ahirani Song Patch | Roland SPD-20 PRO",
+    download: ""
+  },
+
+  // नवीन Patch इथून जोडा:
+  // {
+  //   name: "तुमच्या नवीन Patch चे नाव",
+  //   price: 300,
+  //   description: "Patch ची माहिती",
+  //   download: "इथे डाउनलोड लिंक टाका"
+  // },
+
+];
+
+/* ==========================================
+   UPI PAYMENT SETTINGS
+
+   तुमचा UPI ID इथे आहे.
+   ========================================== */
+
+const UPI_ID = "kalpeahnilam6068@okhdfcbank";
+const PAYEE_NAME = "Kalpesh Nikam";
+
+/* खालील कोड स्वतः बदलण्याची गरज नाही */
+
+const list = document.getElementById("productList");
+
+patches.forEach((patch, index) => {
+  const upiLink =
+    "upi://pay?pa=" + encodeURIComponent(UPI_ID) +
+    "&pn=" + encodeURIComponent(PAYEE_NAME) +
+    "&am=" + patch.price +
+    "&cu=INR" +
+    "&tn=" + encodeURIComponent(patch.name);
+
+  const card = document.createElement("div");
+  card.className = "product";
+
+  card.innerHTML = `
+    <h2>${patch.name}</h2>
+    <p>${patch.description}</p>
+    <div class="price">₹${patch.price}</div>
+    <a class="buy" href="${upiLink}">
+      Pay with UPI
+    </a>
+    <p class="note">
+      पेमेंट केल्यानंतर डाउनलोडसाठी विक्रेत्याशी संपर्क करा.
+    </p>
+  `;
+
+  list.appendChild(card);
+});
+
+</script>
+</body>
+</html>
