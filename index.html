@@ -292,14 +292,15 @@ function escapeHTML(value) {
 
 // UPI PAYMENT
 
+
 function payNow() {
 
   const upiLink =
     "upi://pay?pa=" + encodeURIComponent(UPI_ID) +
     "&pn=" + encodeURIComponent(PAYEE_NAME) +
-    "&am=" + PRICE +
+    "&am=300.00" +
     "&cu=INR" +
-    "&tn=" + encodeURIComponent(PRODUCT_NAME);
+    "&tn=" + encodeURIComponent("KALPESH NIKAM SAMBAL PATCH");
 
   window.location.href = upiLink;
 
