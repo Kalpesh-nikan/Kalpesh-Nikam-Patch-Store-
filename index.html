@@ -7,52 +7,116 @@
 <title>KALPESH NIKAM | Patch Store</title>
 
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#101010;
-  color:white;
+* {
+  box-sizing: border-box;
 }
-header{
-  text-align:center;
-  padding:35px 15px;
-  background:#1d1d1d;
-  border-bottom:2px solid #d6a84b;
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #101010;
+  color: white;
 }
-header h1{color:#e6bd65;margin:0}
-header p{color:#ccc}
-.container{max-width:950px;margin:auto;padding:20px}
-.intro{text-align:center;margin:25px 0}
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:18px;
+
+header {
+  text-align: center;
+  padding: 35px 15px;
+  background: #1d1d1d;
+  border-bottom: 2px solid #d6a84b;
 }
-.product{
-  background:#202020;
-  padding:20px;
-  border-radius:14px;
-  border:1px solid #444;
+
+header h1 {
+  color: #e6bd65;
+  margin: 0;
 }
-.product h2{color:#e6bd65}
-.price{font-size:25px;font-weight:bold}
-button,.buy{
-  display:block;
-  width:100%;
-  padding:13px;
-  margin-top:12px;
-  border:0;
-  border-radius:8px;
-  background:#d6a84b;
-  color:#111;
-  font-weight:bold;
-  text-align:center;
-  text-decoration:none;
-  cursor:pointer;
+
+header p {
+  color: #ccc;
 }
-.note{color:#bbb;font-size:13px;line-height:1.6}
-footer{text-align:center;padding:25px;color:#aaa}
+
+.container {
+  max-width: 950px;
+  margin: auto;
+  padding: 20px;
+}
+
+.intro {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.product {
+  background: #202020;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid #444;
+  max-width: 450px;
+  margin: auto;
+}
+
+.product h2 {
+  color: #e6bd65;
+  text-align: center;
+}
+
+.price {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin-top: 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #d6a84b;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+input {
+  width: 100%;
+  padding: 13px;
+  margin: 8px 0;
+  border-radius: 7px;
+  border: 1px solid #555;
+  background: #151515;
+  color: white;
+  font-size: 15px;
+}
+
+.checkout {
+  display: none;
+  background: #202020;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 450px;
+  margin: 20px auto;
+}
+
+.note {
+  color: #bbb;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.status {
+  color: #e6bd65;
+  text-align: center;
+  line-height: 1.7;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #aaa;
+}
 </style>
 </head>
 
@@ -65,91 +129,190 @@ footer{text-align:center;padding:25px;color:#aaa}
 </header>
 
 <div class="container">
+
   <div class="intro">
     <h2>Our Patch Collection</h2>
-    <p>तुमच्या आवडीचे Music Patches खरेदी करा.</p>
+    <p>तुमच्या आवडीचे Professional Music Patches खरेदी करा.</p>
   </div>
 
-  <div class="products" id="productList"></div>
+  <div class="product">
+
+    <h2>KALPESH NIKAM SAMBAL PATCH</h2>
+
+    <p class="note">
+      Professional Sambal Sounds<br>
+      Roland SPD-20 PRO Compatible<br>
+      Digital Patch File (.SPD)
+    </p>
+
+    <div class="price">₹300</div>
+
+    <button onclick="openCheckout()">
+      BUY NOW
+    </button>
+
+  </div>
+
+  <div class="checkout" id="checkout">
+
+    <h2 style="color:#e6bd65;text-align:center;">
+      Checkout
+    </h2>
+
+    <p>तुमची माहिती भरा:</p>
+
+    <form id="checkoutForm">
+
+      <label>Email Address</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+        required
+      >
+
+      <label>Mobile Number</label>
+      <input
+        type="tel"
+        id="mobile"
+        placeholder="10 digit mobile number"
+        pattern="[6-9][0-9]{9}"
+        maxlength="10"
+        required
+      >
+
+      <button type="submit">
+        CONTINUE TO PAYMENT ₹300
+      </button>
+
+    </form>
+
+    <p class="note">
+      Payment करण्यापूर्वी तुमची माहिती तपासा.
+    </p>
+
+  </div>
+
+  <div id="paymentSection" class="checkout">
+
+    <h2 style="color:#e6bd65;text-align:center;">
+      Payment Details
+    </h2>
+
+    <div id="customerDetails" class="note"></div>
+
+    <div class="price">₹300</div>
+
+    <button onclick="payNow()">
+      PAY ₹300 WITH UPI
+    </button>
+
+    <p class="note">
+      UPI App मध्ये Payment पूर्ण करा.
+      Payment यशस्वी झाल्यानंतर विक्रेत्याशी
+      संपर्क साधून Transaction ID द्या.
+    </p>
+
+    <p class="status" id="paymentStatus"></p>
+
+  </div>
+
 </div>
 
 <footer>
   © 2026 KALPESH NIKAM PATCH STORE
+  <p>Made for Music Lovers 🥁</p>
 </footer>
 
 <script>
 
-/* ==========================================
-   PATCH ADD / EDIT करण्याची जागा
+// PRODUCT DETAILS
 
-   नवीन PATCH जोडण्यासाठी खालीलप्रमाणे
-   नवीन वस्तू कॉपी करून यादीत टाका.
+const PRODUCT_NAME = "KALPESH NIKAM SAMBAL PATCH";
+const PRICE = 300;
 
-   name = Patch चे नाव
-   price = किंमत
-   description = माहिती
-   download = Patch ची डाउनलोड लिंक
-
-   ========================================== */
-
-const patches = [
-
-  {
-    name: "मी तुंच दिवाना",
-    price: 300,
-    description: "Ahirani Song Patch | Roland SPD-20 PRO",
-    download: ""
-  },
-
-  // नवीन Patch इथून जोडा:
-  // {
-  //   name: "तुमच्या नवीन Patch चे नाव",
-  //   price: 300,
-  //   description: "Patch ची माहिती",
-  //   download: "इथे डाउनलोड लिंक टाका"
-  // },
-
-];
-
-/* ==========================================
-   UPI PAYMENT SETTINGS
-
-   तुमचा UPI ID इथे आहे.
-   ========================================== */
+// UPI SETTINGS
 
 const UPI_ID = "kalpeahnilam6068@okhdfcbank";
 const PAYEE_NAME = "Kalpesh Nikam";
 
-/* खालील कोड स्वतः बदलण्याची गरज नाही */
+// CUSTOMER DETAILS
 
-const list = document.getElementById("productList");
+let customerEmail = "";
+let customerMobile = "";
 
-patches.forEach((patch, index) => {
+// OPEN CHECKOUT
+
+function openCheckout() {
+  document.getElementById("checkout").style.display = "block";
+
+  document.getElementById("checkout").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+// CHECKOUT FORM
+
+document.getElementById("checkoutForm")
+.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  customerEmail =
+    document.getElementById("email").value.trim();
+
+  customerMobile =
+    document.getElementById("mobile").value.trim();
+
+  document.getElementById("customerDetails").innerHTML =
+    "<p>Email: " + escapeHTML(customerEmail) + "</p>" +
+    "<p>Mobile: " + escapeHTML(customerMobile) + "</p>";
+
+  document.getElementById("paymentSection").style.display = "block";
+
+  document.getElementById("paymentSection").scrollIntoView({
+    behavior: "smooth"
+  });
+
+});
+
+// SAFE TEXT
+
+function escapeHTML(value) {
+  return value.replace(/[&<>"']/g, function(char) {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char];
+  });
+}
+
+// UPI PAYMENT
+
+function payNow() {
+
   const upiLink =
     "upi://pay?pa=" + encodeURIComponent(UPI_ID) +
     "&pn=" + encodeURIComponent(PAYEE_NAME) +
-    "&am=" + patch.price +
+    "&am=" + PRICE +
     "&cu=INR" +
-    "&tn=" + encodeURIComponent(patch.name);
+    "&tn=" + encodeURIComponent(PRODUCT_NAME);
 
-  const card = document.createElement("div");
-  card.className = "product";
+  window.location.href = upiLink;
 
-  card.innerHTML = `
-    <h2>${patch.name}</h2>
-    <p>${patch.description}</p>
-    <div class="price">₹${patch.price}</div>
-    <a class="buy" href="${upiLink}">
-      Pay with UPI
-    </a>
-    <p class="note">
-      पेमेंट केल्यानंतर डाउनलोडसाठी विक्रेत्याशी संपर्क करा.
-    </p>
-  `;
+}
 
-  list.appendChild(card);
-});
+// PAYMENT VERIFICATION
+
+// IMPORTANT:
+// UPI app open झाल्याने payment verified होत नाही.
+// Razorpay backend verification नंतर जोडायचे आहे.
+// तोपर्यंत automatic download उपलब्ध नाही.
 
 </script>
+
 </body>
 </html>
